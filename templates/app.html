@@ -10,7 +10,7 @@
     {% block title %}{{ title }}{% endblock %}
     <h1>Identificacion de celulas</h1>
 
-    <form class="container" method="POST" action="">
+    <form class="container" method="POST" action="" enctype=multipart/form-data>
         <div class="organ-selector">
             <h3>Seleccione el organo:</h3>
             <select name="organ_select">
@@ -21,7 +21,7 @@
         </div>
         <div class="organ-selector">
             <h4>Subir celula</h4>
-            <input type="file" id="uploadOrgan"></input>
+            <input type="file" name="file"></input>
         </div>
         <button type="submit">Procesar</button>
     </form>
