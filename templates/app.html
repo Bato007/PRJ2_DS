@@ -7,25 +7,25 @@
 </header>
 
 <body>
-    {{ title }}
+    {% block title %}{{ title }}{% endblock %}
     <h1>Identificacion de celulas</h1>
-    <div class="container">
+
+    <form class="container" method="POST" action="">
         <div class="organ-selector">
             <h3>Seleccione el organo:</h3>
-            <select>
-                <option value="kidney">Riñon</option>
-                <option value="lung">Pulmon</option>
-                <option value="largeintestine">Intestino grueso</option>
-                <option value="prostate">Prostata</option>
-                <option value="spleen">Bazo</option>
+            <select name="organ_select">
+                {% for organ in organs %}
+                <option value={{organ}} selected>{{ organ }}</option>
+                {% endfor %}
             </select>
         </div>
         <div class="organ-selector">
             <h4>Subir celula</h4>
             <input type="file" id="uploadOrgan"></input>
         </div>
-        <button type="button">Procesar</button>
-    </div>
+        <button type="submit">Procesar</button>
+    </form>
+
     <div class="display">
         <image id="prediction" src="https://www.oas.org/ext/Portals/14/EasyDNNnews/1806/Image.jpg" alt="resultado" />
     </div>

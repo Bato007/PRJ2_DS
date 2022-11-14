@@ -6,8 +6,7 @@
 
 # from PIL import Image
 # import matplotlib.pyplot as plt
-from flask import render_template
-from flask import Flask
+from flask import Flask, flash, redirect, render_template, request, url_for
 
 # def rle2mask(rle, width, target_size=None):
 #     if target_size == None:
@@ -156,7 +155,7 @@ from flask import Flask
 # epochs = 4
 # image_size = 512
 # batch_size = 4
-# organs = ['prostate', 'spleen', 'lung', 'kidney', 'largeintestine']
+organs = ['prostate', 'spleen', 'lung', 'kidney', 'largeintestine']
 
 # test_df = pd.read_csv('./test.csv')
 # sub = {'id':[], 'rle':[]}
@@ -187,6 +186,11 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template("app.html", title="Hola desde python")
+    select = "Hola desde python"
+    if request.method == 'POST':
+        print(request)
+        select = request.form.get('organ_select')
+       
+    return render_template("app.html", title=select, organs=organs)
