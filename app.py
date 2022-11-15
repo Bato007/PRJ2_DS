@@ -5,6 +5,7 @@ from werkzeug.utils import secure_filename
 from model import predict_organ
 
 organs = ['prostate', 'spleen', 'lung', 'kidney', 'largeintestine']
+models = ['UNET', 'FPN']
 
 result = ""
 showResult = False
@@ -19,7 +20,7 @@ app.config.update(
 
 @app.route('/')
 def index():
-    return render_template("app.html", organs=organs, result=result)
+    return render_template("app.html", organs=organs, result=result, models=models)
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
@@ -36,10 +37,12 @@ def upload_file():
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
                 organ = request.form.get('organ_select')
-                predict_organ(organ)
+                model = request.form.get('model_select')
+
+                predict_organ(organ, model)
                 result = './static/result.png'
 
 
-                return render_template("app.html", organ=organ, organs=organs, result=result, showResult=True)
+                return render_template("app.html", organ=organ, organs=organs, result=result, showResult=True, model=model, models=models)
     
     return render_template("app.html", showResult=False)

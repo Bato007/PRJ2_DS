@@ -21,13 +21,21 @@
                     <h4>Seleccione el órgano</h4>
                     <select name="organ_select">
                         {% for organ in organs %}
-                        <option value={{organ}} selected>{{ organ }}</option>
+                        <option value={{organ}}>{{ organ }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="organ-selector">
+                    <h4>Seleccione el modelo</h4>
+                    <select name="model_select">
+                        {% for model in models %}
+                        <option value={{model}}>{{ model }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="organ-selector">
                     <h4>Subir célula</h4>
-                    <input type="file" onchange="enableButton()" id="file" name="file"></input>
+                    <input type="file" id="file" name="file"></input>
                 </div>
                 <button type="submit">Procesar</button>
             </form>
@@ -36,7 +44,7 @@
 
         {% block content %}
         {% if showResult %}
-        <h5>Mostrando resultado para {{ organ }}</h5>
+        <h5>Mostrando resultado para {{ organ }} con modelo {{model}}</h5>
         <div class="display" style="background-image: url('{{result}}')"></div>
         {% else %}
         <div class="loading"></div>

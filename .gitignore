@@ -1,3 +1,4 @@
 /train_images
-*.h5
+/FPN
+/UNET
 /uploads

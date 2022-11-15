@@ -161,13 +161,13 @@ organs = ['prostate', 'spleen', 'lung', 'kidney', 'largeintestine']
 test_df = pd.read_csv('./test.csv')
 sub = {'id':[], 'rle':[]}
 
-def predict_organ(organ):
+def predict_organ(organ, model):
     print("Predicting on organ:", organ)
 
     test_X = test_df[test_df.organ == organ].reset_index(drop=True)
     if len(test_X) == 0: return #Skip organs without item in test
         
-    model = load_model(f"./{organ}_model.h5", compile=False, custom_objects={"bce_dice_loss": bce_dice_loss, "dice_coef": dice_coef})
+    model = load_model(f"./{model}/{organ}_model.h5", compile=False, custom_objects={"bce_dice_loss": bce_dice_loss, "dice_coef": dice_coef})
     
     test_loader = ImageDataGenerator(test_X, batch_size, False,512)
     preds = model.predict(test_loader)
