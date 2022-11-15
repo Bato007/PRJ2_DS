@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <html>
-<header>
+
+<head>
     <meta charset="UTF-8">
     <title>FTUs Identifier</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='theme.css' ) }}">
-</header>
+    <link type="image/png" rel="icon" href="{{ url_for('static', filename='favicon.png' ) }}">
+</head>
 
 <body>
-    <h1>Identificacion de celulas</h1>
+    <div class="full-container">
 
-    <form class="container" method="POST" action="" enctype=multipart/form-data>
-        <div class="organ-selector">
-            <h3>Seleccione el órgano:</h3>
-            <select name="organ_select">
-                {% for organ in organs %}
-                <option value={{organ}} selected>{{ organ }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="organ-selector">
-            <h4>Subir célula</h4>
-            <input type="file" onchange="enableButton()" id="file" name="file"></input>
-        </div>
-        <button type="submit">Procesar</button>
-    </form>
+        <h1>Identificación de células</h1>
 
-    {% block content %}
-    {% if showResult %}
-    <h5>Mostrando resultado para {{ organ }}</h5>
-    <div class="display" style="background-image: url('{{result}}')"></div>
-    {% else %}
-    <div class="loading"></div>
-    {% endif %}
-    {% endblock content %}
+        <div class="row">
+
+            <img src="https://cdn-icons-png.flaticon.com/512/4178/4178748.png" alt="body" />
+            <form class="container" method="POST" action="" enctype=multipart/form-data>
+                <div class="organ-selector">
+                    <h4>Seleccione el órgano</h4>
+                    <select name="organ_select">
+                        {% for organ in organs %}
+                        <option value={{organ}} selected>{{ organ }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="organ-selector">
+                    <h4>Subir célula</h4>
+                    <input type="file" onchange="enableButton()" id="file" name="file"></input>
+                </div>
+                <button type="submit">Procesar</button>
+            </form>
+
+        </div>
+
+        {% block content %}
+        {% if showResult %}
+        <h5>Mostrando resultado para {{ organ }}</h5>
+        <div class="display" style="background-image: url('{{result}}')"></div>
+        {% else %}
+        <div class="loading"></div>
+        {% endif %}
+        {% endblock content %}
+
+    </div>
 </body>
 
 <script type="text/javascript">
