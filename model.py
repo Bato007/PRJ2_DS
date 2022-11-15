@@ -184,4 +184,4 @@ def predict_organ(organ):
     plt.imshow(test_loader[0][0])
     plt.imshow(preds[0], cmap='coolwarm', alpha=0.5)
 
-    plt.savefig('result.png')
+    plt.savefig('static/result.png')

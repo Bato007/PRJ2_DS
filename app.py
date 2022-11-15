@@ -4,9 +4,10 @@ import os
 from werkzeug.utils import secure_filename
 from model import predict_organ
 
-predict_organ('lung')
-
 organs = ['prostate', 'spleen', 'lung', 'kidney', 'largeintestine']
+
+result = ""
+showResult = False
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
@@ -18,8 +19,7 @@ app.config.update(
 
 @app.route('/')
 def index():
-    select = "Hola desde python"
-    return render_template("app.html", title=select, organs=organs)
+    return render_template("app.html", organs=organs, result=result)
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
@@ -35,5 +35,11 @@ def upload_file():
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-    select = request.form.get('organ_select')
-    return render_template("app.html", title=select, organs=organs)
+                organ = request.form.get('organ_select')
+                predict_organ(organ)
+                result = './static/result.png'
+
+
+                return render_template("app.html", organ=organ, organs=organs, result=result, showResult=True)
+    
+    return render_template("app.html", showResult=False)

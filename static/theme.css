@@ -8,7 +8,7 @@ body {
     align-items: center;
     flex-direction: column;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
 }
 
@@ -32,6 +32,12 @@ form button {
     color: white;
 }
 
+form button:disabled,
+form button[disabled] {
+    background-color: #cccccc;
+    color: #666666;
+}
+
 .organ-selector {
     display: flex;
     flex-direction: row;
@@ -45,4 +51,21 @@ form button {
 
 option:checked {
     background-color: #FFAFA6;
+}
+
+.display {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 70vw;
+    height: 35vw;
+}
+
+.loading {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 50vw;
+    height: 20vw;
+    background-image: url('https://www.maxhealthcare.in/img/loader-rolling.gif');
 }

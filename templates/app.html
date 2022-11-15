@@ -7,12 +7,11 @@
 </header>
 
 <body>
-    {% block title %}{{ title }}{% endblock %}
     <h1>Identificacion de celulas</h1>
 
     <form class="container" method="POST" action="" enctype=multipart/form-data>
         <div class="organ-selector">
-            <h3>Seleccione el organo:</h3>
+            <h3>Seleccione el órgano:</h3>
             <select name="organ_select">
                 {% for organ in organs %}
                 <option value={{organ}} selected>{{ organ }}</option>
@@ -20,15 +19,34 @@
             </select>
         </div>
         <div class="organ-selector">
-            <h4>Subir celula</h4>
-            <input type="file" name="file"></input>
+            <h4>Subir célula</h4>
+            <input type="file" onchange="enableButton()" id="file" name="file"></input>
         </div>
         <button type="submit">Procesar</button>
     </form>
 
-    <div class="display">
-        <image id="prediction" src="https://www.oas.org/ext/Portals/14/EasyDNNnews/1806/Image.jpg" alt="resultado" />
-    </div>
+    {% block content %}
+    {% if showResult %}
+    <h5>Mostrando resultado para {{ organ }}</h5>
+    <div class="display" style="background-image: url('{{result}}')"></div>
+    {% else %}
+    <div class="loading"></div>
+    {% endif %}
+    {% endblock content %}
 </body>
+
+<script type="text/javascript">
+    var button = document.querySelector('button[type=submit]');
+
+    button.disabled = true;
+
+    document.getElementById('file').addEventListener('change', function () {
+        if (this.value.length > 0) {
+            button.disabled = false;
+        } else {
+            button.disabled = true;
+        }
+    });
+</script>
 
 </html>
