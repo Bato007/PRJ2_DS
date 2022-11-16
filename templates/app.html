@@ -9,6 +9,15 @@
 </head>
 
 <body>
+    <div class="switch-container">
+        <h6>Mostrar informacion sobre los modelos</h6>
+        <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round" onclick="showTabs()"></span>
+        </label>
+    </div>
+
+    {% block content %}
     <div class="full-container">
 
         <h1>Identificación de células</h1>
@@ -26,7 +35,7 @@
                     </select>
                 </div>
                 <div class="organ-selector">
-                    <h4>Seleccione el modelo</h4>
+                    <h4>Seleccione el modelo</h4><a href="#models_section" title="Conoce el mejor modelo"></a>
                     <select name="model_select">
                         {% for model in models %}
                         <option value={{model}}>{{ model }}</option>
@@ -42,16 +51,42 @@
 
         </div>
 
-        {% block content %}
         {% if showResult %}
         <h5>Mostrando resultado para {{ organ }} con modelo {{model}}</h5>
         <div class="display" style="background-image: url('{{result}}')"></div>
         {% else %}
         <div class="loading"></div>
         {% endif %}
-        {% endblock content %}
 
     </div>
+
+    <div class="accuracy_results" id="models_section">
+        <div class="tabs">
+            {% for organ in organs %}
+            <button id="tab_{{organ}}" class="tab_button" onclick='openAccuracy("{{organ}}")'>{{ organ }}</button>
+            {% endfor %}
+        </div>
+        <div class="accuracy_images">
+
+            {% for organ in organs %}
+            <div id="{{organ}}" class="organ_accuracy">
+                {% if "lung" in organ %}
+                <h1>For the {{ organ }} <span>FPN</span> model is recommended</h1>
+                {% else %}
+                <h1>For the {{ organ }} <span>UNET</span> model is recommended</h1>
+                {% endif %}
+
+                <h2>FPN</h2>
+                <div class="graph" style="background-image: url('./static/accuracy_results/FPN_{{organ}}.png')"></div>
+                <h2>UNET</h2>
+                <div class="graph" style="background-image: url('./static/accuracy_results/UNET_{{organ}}.png')">
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    {% endblock content %}
 </body>
 
 <script type="text/javascript">
@@ -66,6 +101,29 @@
             button.disabled = true;
         }
     });
+
+    function openAccuracy(cityName) {
+        var i;
+        var x = document.getElementsByClassName("organ_accuracy");
+        var y = document.getElementsByClassName("tab_button");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+            y[i].classList.remove("selected_tab");
+        }
+        document.getElementById(cityName).style.display = "block";
+        document.getElementById("tab_" + cityName).classList.add("selected_tab");
+    }
+
+    openAccuracy('prostate')
+
+    function showTabs() {
+        if (document.getElementById("models_section").style.display == 'none') {
+            document.getElementById("models_section").style.display = "block";
+        } else {
+            document.getElementById("models_section").style.display = "none";
+        }
+    }
+
 </script>
 
 </html>

@@ -100,3 +100,147 @@ option:checked {
     height: 13vw;
     margin-right: 1vw;
 }
+
+.accuracy_images {
+    background-image: url('./wave2.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.organ-selector a {
+    width: 1.5vw;
+    height: 1.5vw;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-image: url('https://img.icons8.com/flat-round/512/question-mark.png');
+}
+
+div.accuracy_images div.organ_accuracy:not(:first-child) {
+    display: none;
+}
+
+.organ_accuracy {
+    width: 80%;
+    margin: auto;
+}
+
+.accuracy_results {
+    width: 100%;
+    background-color: white;
+}
+
+.tabs {
+    background-color: black;
+}
+
+.tabs .selected_tab {
+    color: black;
+    background-color: #FFAFA6;
+    font-weight: bold;
+}
+
+.tabs button {
+    background: black;
+    color: white;
+    outline: none;
+    padding: 1vw;
+    text-transform: capitalize;
+}
+
+.graph {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 100%;
+    height: 27vw;
+}
+
+.organ_accuracy h1 {
+    text-align: center;
+}
+
+.organ_accuracy h1 span {
+    color: #80352D;
+}
+
+
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: red;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: green;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px green;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.switch-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    right: 1vw;
+    top: 1vw;
+}
+
+.switch-container h6 {
+    width: 50%;
+    text-align: center;
+}
