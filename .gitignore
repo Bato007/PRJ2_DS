@@ -1,4 +1,6 @@
 /train_images
 /FPN
 /UNET
-/uploads
+/uploads/*
+/static/predicts/*
+/__pycache__

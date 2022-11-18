@@ -17,6 +17,8 @@
         </label>
     </div>
 
+    <button class="stats-container" onclick="goStats()" type="button">Estadisticas</button>
+
     {% block content %}
     <div class="full-container">
 
@@ -54,6 +56,10 @@
         {% if showResult %}
         <h5>Mostrando resultado para {{ organ }} con modelo {{model}}</h5>
         <div class="display" style="background-image: url('{{result}}')"></div>
+            {% if both %}
+                <h5>Mostrando resultado para {{ organ }} con modelo {{model_m2}}</h5>
+                <div class="display" style="background-image: url('{{result_m2}}')"></div>
+            {% endif %}
         {% else %}
         <div class="loading"></div>
         {% endif %}
@@ -122,6 +128,10 @@
         } else {
             document.getElementById("models_section").style.display = "none";
         }
+    }
+
+    function goStats() {
+        window.location.href = window.location.href + '/dash'
     }
 
 </script>

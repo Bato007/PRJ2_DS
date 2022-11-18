@@ -244,3 +244,14 @@ input:checked+.slider:before {
     width: 50%;
     text-align: center;
 }
+
+.stats-container {
+    z-index: 100;
+    position: absolute;
+    left: 1vw;
+    top: 1vw;
+    background-color: #80352D;
+    color: white;
+    padding: 1vw;
+    font-weight: bold;
+}

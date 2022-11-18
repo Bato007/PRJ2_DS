@@ -1,0 +1,64 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+.dash-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+
+    background-image: url('./wave.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #FF6A59;
+}
+
+.full-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 19px 38px rgb(0 0 0 / 30%), 0 15px 12px rgb(0 0 0 / 22%);
+    background-color: white;
+    padding: 3vw 5vw;
+    margin: 5vw;
+
+    -webkit-transition: width 2s ease-in-out;
+    -moz-transition: width 2s ease-in-out;
+    -o-transition: width 2s ease-in-out;
+    transition: width 2s ease-in-out;
+}
+
+.graph {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 100%;
+    height: 27vw;
+}
+
+.stats-basic {
+    background-color: #80352D;
+    color: white;
+    padding: 1vw;
+    font-weight: bold;
+}
+
+.stats-container {
+    z-index: 100;
+    position: absolute;
+    left: 1vw;
+    top: 1vw;
+    background-color: #80352D;
+    color: white;
+    text-decoration: none;
+    padding: 1vw;
+    font-weight: bold;
+}
