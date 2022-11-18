@@ -63,6 +63,7 @@ def upload_file():
                         result=result,
                         showResult=True,
                         both=False,
+                        models=models,
                         model=model,
                     )
                 
